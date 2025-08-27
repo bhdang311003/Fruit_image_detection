@@ -1,11 +1,11 @@
-# 🧑‍💼 Fruit-image Detection
+# 🍊 Fruit-image Detection 🍎
 
 ## Overview  
 This project demonstrates an end-to-end Object Detection pipeline using YOLOv8 on a custom dataset of fruits.
 The goal is to detect and classify multiple fruit types in images with high accuracy.
 
 <p align="center">
-  <img src="..." width="595" height="515" alt="1st Image"/>
+  <img src="result_img/feb0236c0b6281a9_jpg.rf.82836a6f62f2e3f47f566c3c7440f640.jpg" width="500" height="400" alt="Image"/>
 </p>
 
 
@@ -20,21 +20,35 @@ The goal is to detect and classify multiple fruit types in images with high accu
 ```
 📂 Project Root
 ├── 📂 Data
-│   ├── Innerwear.csv
-│   ├── Jeans.csv
-│   ├── T-shirts and Polos.csv
-│   ├── Shirts.csv
-│   └── mens_clothing.csv
-├── 📂 faiss_product_index
-│   ├── index.faiss
-│   └── index.pkl
+│   ├── 📂 test
+│   │   ├── 📂 images
+│   │   │   ├── x.jpg
+│   │   │   └── ....
+│   │   └── 📂 labels
+│   │       ├── x.txt
+│   │       └── ....
+│   ├── 📂 train
+│   │   ├── 📂 images
+│   │   │   ├── y.jpg
+│   │   │   └── ....
+│   │   └── 📂 labels
+│   │       ├── y.txt
+│   │       └── ....
+│   ├── 📂 valid
+│   │   ├── 📂 images
+│   │   │   ├── z.jpg
+│   │   │   └── ....
+│   │   └── 📂 labels
+│   │       ├── z.txt
+│   │       └── ....
+│   └── data.yaml
 ├── 📂 baseline_model
-│   ├── best.pt
+│   └── best.pt
 ├── 📂 fine_tune_model
-│   ├── best.pt
+│   └── best.pt
 ├── fruit_detection.ipynb
 ├── 📂 runs
-├── yolov8n.pt
+├── 📂 result_img
 ├── requirements.txt
 └── README.md
 ```
@@ -51,6 +65,7 @@ The goal is to detect and classify multiple fruit types in images with high accu
 
 ## Approach / Strategy
 To tackle the Object Detection problem on a dataset of ~7,000 images with 6 classes, I designed a two-stage training pipeline:
+
 **1. Baseline**
 - Started with YOLOv8n (nano) as a lightweight baseline.
 - Training configuration:
@@ -58,10 +73,11 @@ To tackle the Object Detection problem on a dataset of ~7,000 images with 6 clas
   - `imgsz = 640`
   - `batch = 16`
 - Results:
-  - mAP50: 0.495
-  - mAP50-95: 0.333
-  - Precision: 0.663
-  - Recall: 0.432
+  - `mAP50: 0.495`
+  - `mAP50-95: 0.333`
+  - `Precision: 0.663`
+  - `Recall: 0.432`
+ 
 **2. Fine-tuning with YOLOv8s**
 - To improve performance, I applied several fine-tuning strategies:
   - Model: `YOLOv8s` (small) – stronger than `YOLOv8n`.
@@ -74,20 +90,27 @@ To tackle the Object Detection problem on a dataset of ~7,000 images with 6 clas
   - `imgsz = 640`
   - `batch = 16`
 - Results:
-  - mAP50: 0.523
-  - mAP50-95: 0.358
-  - Precision: 0.665
-  - Recall: 0.462
-👉 Compared to the baseline, the fine-tuned model improved mAP50 by ~14%, improved mAP50-95 by ~7%  and achieved more reliable object detection.
+  - `mAP50: 0.523`
+  - `mAP50-95: 0.358`
+  - `Precision: 0.665`
+  - `Recall: 0.462`
+ 
+👉 Compared to the baseline, the fine-tuned model improved mAP50 by ~14%, improved mAP50-95 by ~7% and achieved more reliable object detection.
 
 ## Result
 ### Training Curve
-![Training Curve](<img width="998" height="498" alt="results" src="https://github.com/user-attachments/assets/b04a4444-f8a4-42a3-bdc7-65dfbcf21e22" />)
+<p align="center">
+  <img src="result_img/results.png" width="900" height="400" alt="Image"/>
+</p>
 
 ### Sample Predictions
 Below are examples of model predictions on test images:
 
-![Pred1](samples/pred1.jpg) | ![Pred2](samples/pred2.jpg) |
+<p align="center">
+  <img src="result_img/0e808bb4e4d7d7a4_jpg.rf.b2448884f65060fd8bb0d85acfdc1460.jpg" width="400" alt="Prediction 1"/>
+  <img src="result_img/1a6bac43aad58ca1_jpg.rf.69630580f3fd23f055cd294ba8354d51.jpg" width="400" alt="Prediction 2"/>
+</p>
+
 
 
 
