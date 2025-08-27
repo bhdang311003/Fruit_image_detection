@@ -5,7 +5,7 @@ This project demonstrates an end-to-end Object Detection pipeline using YOLOv8 o
 The goal is to detect and classify multiple fruit types in images with high accuracy.
 
 <p align="center">
-  <img src="..." width="595" height="515" alt="Demo Image"/>
+  <img src="..." width="595" height="515" alt="1st Image"/>
 </p>
 
 
@@ -58,25 +58,37 @@ To tackle the Object Detection problem on a dataset of ~7,000 images with 6 clas
   - `imgsz = 640`
   - `batch = 16`
 - Results:
-  - mAP50: …
-  - Precision
-  - Recall: …
+  - mAP50: 0.495
+  - mAP50-95: 0.333
+  - Precision: 0.663
+  - Recall: 0.432
 **2. Fine-tuning with YOLOv8s**
 - To improve performance, I applied several fine-tuning strategies:
   - Model: `YOLOv8s` (small) – stronger than `YOLOv8n`.
   - Epochs: increased to `80` for longer training.
   - Optimizer: used `AdamW` with a smaller learning rate (`lr0 = 0.001`).
   - Image size: increased to `800` to better detect small objects.
-  - Data Augmentation: rotation ±5°, translation, scaling, mosaic 0.5, horizontal flip.
+  - Data Augmentation: `weight_decay = 0.0005`.
 - Training configuration:
-  - `epochs = 50`
+  - `epochs = 80`
   - `imgsz = 640`
   - `batch = 16`
 - Results:
-  - mAP50: …
-  - Precision
-  - Recall: …
-👉 Compared to the baseline, the fine-tuned model improved mAP50 by …% and achieved more reliable object detection.
+  - mAP50: 0.523
+  - mAP50-95: 0.358
+  - Precision: 0.665
+  - Recall: 0.462
+👉 Compared to the baseline, the fine-tuned model improved mAP50 by ~14%, improved mAP50-95 by ~7%  and achieved more reliable object detection.
+
+## Result
+### Training Curve
+![Training Curve](<img width="998" height="498" alt="results" src="https://github.com/user-attachments/assets/b04a4444-f8a4-42a3-bdc7-65dfbcf21e22" />)
+
+### Sample Predictions
+Below are examples of model predictions on test images:
+
+![Pred1](samples/pred1.jpg) | ![Pred2](samples/pred2.jpg) |
+
 
 
 
