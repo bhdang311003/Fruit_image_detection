@@ -58,6 +58,7 @@ The goal is to detect and classify multiple fruit types in images with high accu
 1. Go to the Kaggle dataset page: [Fruit Detection Dataset (Kaggle)](https://www.kaggle.com/datasets/lakshaytyagi01/fruit-detection).
 2. Download the dataset ZIP file.
 3. Extract the contents into the Data/ folder of this repository.
+
 *Notes:*
 - `data.yaml` contains the dataset configuration (classes, paths, etc.).
 - You may need to update `data.yaml` if your dataset is stored in a different location.
